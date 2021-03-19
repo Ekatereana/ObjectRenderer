@@ -4,10 +4,11 @@ import com.company.abstruct.ImageConvector;
 import com.company.enums.ImageType;
 import com.company.pojo.ColorSpace;
 import com.company.pojo.ImageInstance;
+import com.company.pojo.headers.Header;
 import com.sun.jdi.InvalidTypeException;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,18 +25,19 @@ public class PPMConvector extends ImageConvector {
             String header = readNextIntASCII(is);
             int width = readNextIntASCIIInteger(is);
             int height = readNextIntASCIIInteger(is);
-            System.out.println(header + "|" + width + "|" + height);
+            int depth = readNextIntASCIIInteger(is);
+            System.out.println(header + "|" + width + "|" + height + "|" + depth);
             ColorSpace colorSpace = checkEncoding(header, is, width, height);
             inst.setRgb(colorSpace);
-            inst.setWidth(width);
-            inst.setHeight(height);
+            Header ppmHeader = new Header(width, height, depth);
+            inst.setHeader(ppmHeader);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return inst;
     }
 
-//    read helper
+    //    read helper
     private int readNextIntASCIIInteger(InputStream is) throws IOException {
         return Integer.parseInt(readNextIntASCII(is));
     }
@@ -83,19 +85,16 @@ public class PPMConvector extends ImageConvector {
         int[][] g = new int[height][width];
         int[][] b = new int[height][width];
 
-        int row = 0;
-        int column = 0;
+
         try {
             int k = is.read();
-            while (k != -1) {
-                r[row][column] = k;
-
-                g[row][column] = is.read();
-
-                b[row][column] = is.read();
-
-                k = is.read();
-
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    r[i][j] = k;
+                    g[i][j] = is.read();
+                    b[i][j] = is.read();
+                    k = is.read();
+                }
             }
         } catch (IOException e) {
             throw new Exception("Unexpected end of the file");
@@ -106,9 +105,46 @@ public class PPMConvector extends ImageConvector {
     }
 
     @Override
-    public ImageInstance write(ImageInstance inst) {
-        return null;
+    public String write(ImageInstance inst) throws IOException {
+        String fileName = inst.getOutputPath() == null ? inst.getSourcePath() : inst.getOutputPath();
+        File result = new File(fileName);
+        OutputStream writer = new FileOutputStream(result);
+        Header header = inst.getHeader();
+        ColorSpace rgb = inst.getRgb();
+//        write magic number
+        writer.write("P6".getBytes(StandardCharsets.US_ASCII));
+//        write  \n line
+        writer.write(10);
+//        write width
+        writer.write(intToByteArr(header.getWidth()));
+//        write  space char
+        writer.write(32);
+//        write height
+        writer.write(intToByteArr(header.getHeight()));
+        writer.write(10);
+        writer.write(intToByteArr(header.getDepth()));
+        writer.write(10);
+
+
+        int[][] r = rgb.getR();
+        int[][] b = rgb.getB();
+        int[][] g = rgb.getG();
+
+        for (int j = 0; j < header.getHeight(); j++) {
+            for (int k = 0; k < header.getWidth(); k++) {
+                writer.write(r[j][k]);
+                writer.write(g[j][k]);
+                writer.write(b[j][k]);
+            }
+
+        }
+
+        return "";
     }
 
-//    write helper
+    //    write helper
+    private byte[] intToByteArr(int number) {
+        return String.valueOf(number).getBytes();
+
+    }
 }

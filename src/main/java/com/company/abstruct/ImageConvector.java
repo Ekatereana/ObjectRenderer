@@ -3,6 +3,9 @@ package com.company.abstruct;
 import com.company.interfaces.ImageMapper;
 import com.company.pojo.ImageInstance;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public abstract class ImageConvector implements ImageMapper {
 
 
@@ -11,7 +14,7 @@ public abstract class ImageConvector implements ImageMapper {
         return null;
     }
     @Override
-    public ImageInstance write(ImageInstance inst) {
+    public String write(ImageInstance inst) throws IOException {
         return null;
     }
 }
