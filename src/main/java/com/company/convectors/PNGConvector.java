@@ -8,11 +8,13 @@ import com.company.pojo.ColorSpace;
 import com.company.pojo.ImageInstance;
 import com.company.pojo.ImageMappingException;
 import com.company.pojo.headers.PNGHeader;
+import org.apache.commons.compress.utils.BitInputStream;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.*;
@@ -78,28 +80,30 @@ public class PNGConvector extends ImageConvector {
         int[][] b = new int[height][width];
         Chunk chunk;
         byte[] palette;
-        switch (header.getColorType()) {
-            case 3:
-                chunk = chunks.get(ChunkType.PLTE);
-                if (chunk == null)
-                    throw new ImageMappingException("Incorrect format of color palette", inst.getSourcePath());
-                else {
-                    int k;
-                    palette = chunk.getContent();
-                    for (int i = 0; i < height; i++) {
-                        for (int j = 0; j < width; j++) {
-                            k = decoder.read();
-                            r[i][j] = palette[k];
-                            g[i][j] = palette[k];
-                            b[i][j] = palette[k];
-                        }
-                    }
-                    return new ColorSpace(r, g, b);
-                }
-
+        if (header.getColorType() != 3) {
+            throw new ImageMappingException("Unsupported color type. Only  PLTE indexes allowed", inst.getSourcePath());
         }
 
-        return null;
+        chunk = chunks.get(ChunkType.PLTE);
+        if (chunk == null)
+            throw new ImageMappingException("Incorrect format of color palette", inst.getSourcePath());
+        else {
+            int k;
+            palette = chunk.getContent();
+            BitInputStream reader = new BitInputStream(decoder, ByteOrder.LITTLE_ENDIAN);
+//            System.out.println(header.isOrder());
+//            System.out.println(header.getFilter());
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    k = BigInteger.valueOf(reader.readBits(header.getBitDepth())).intValue();
+                    r[i][j] = palette[k];
+                    g[i][j] = palette[k + 1];
+                    b[i][j] = palette[k + 2];
+                }
+            }
+            return new ColorSpace(r, g, b);
+
+        }
     }
 
 
@@ -112,7 +116,8 @@ public class PNGConvector extends ImageConvector {
         int length = ByteBuffer.wrap(Arrays.copyOfRange(content, DEF_COL_LENGTH, 2 * DEF_COL_LENGTH))
                 .order(ByteOrder.BIG_ENDIAN)
                 .getInt();
-        instance.setHeader(new PNGHeader(width, length, content[COLOR_TYPE]));
+        instance.setHeader(new PNGHeader(width, length,
+                content[COLOR_TYPE], content[2 * DEF_COL_LENGTH], content[DEFLATE_BYTE + 1], content[DEFLATE_BYTE + 2] == 1));
         return instance;
     }
 
@@ -152,7 +157,6 @@ public class PNGConvector extends ImageConvector {
             if (!Integer.toHexString(k).equals(header.get(i))) {
                 throw new ImageMappingException("unexpected symbols in png file header", fileName);
             }
-
         }
         return "";
     }
