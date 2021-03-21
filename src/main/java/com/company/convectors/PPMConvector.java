@@ -4,8 +4,8 @@ import com.company.abstruct.ImageConvector;
 import com.company.enums.ImageType;
 import com.company.pojo.ColorSpace;
 import com.company.pojo.ImageInstance;
+import com.company.pojo.ImageMappingException;
 import com.company.pojo.headers.Header;
-import com.sun.jdi.InvalidTypeException;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
@@ -22,22 +22,39 @@ public class PPMConvector extends ImageConvector {
 
         try {
             InputStream is = inst.getIs();
-            String header = readNextIntASCII(is);
             int width = readNextIntASCIIInteger(is);
             int height = readNextIntASCIIInteger(is);
-            int depth = readNextIntASCIIInteger(is);
-            System.out.println(header + "|" + width + "|" + height + "|" + depth);
-            ColorSpace colorSpace = checkEncoding(header, is, width, height);
+//            read depth
+            readNextIntASCIIInteger(is);
+            ColorSpace colorSpace = checkEncoding(readHeader(is, inst.getSourcePath()), is, width, height);
             inst.setRgb(colorSpace);
-            Header ppmHeader = new Header(width, height, depth);
+            Header ppmHeader = new Header(width, height);
             inst.setHeader(ppmHeader);
-        } catch (Exception e) {
+        } catch (ImageMappingException | IOException e) {
             e.printStackTrace();
         }
         return inst;
     }
 
+
     //    read helper
+    @Override
+    public String readHeader(InputStream is, String fileName) throws ImageMappingException, IOException {
+        String header = readNextIntASCII(is);
+        List<String> allowed = ImageType.PPM.getExpectedHeader();
+        if (allowed.contains(header)) {
+            return header;
+        } else {
+            throw new ImageMappingException("Only " + allowed.stream().collect(Collectors.joining(" ")) +
+                    " magic number allowed but " + header + " founded", fileName);
+        }
+    }
+
+    private ColorSpace checkEncoding(String header, InputStream is, int width, int height)
+            throws ImageMappingException, IOException {
+        return header.equals("P6") ? readPSix(is, width, height) : readPThree(is, width, height);
+    }
+
     private int readNextIntASCIIInteger(InputStream is) throws IOException {
         return Integer.parseInt(readNextIntASCII(is));
     }
@@ -65,22 +82,12 @@ public class PPMConvector extends ImageConvector {
         return buffer.stream().map(Object::toString).collect(Collectors.joining());
     }
 
-    private ColorSpace checkEncoding(String header, InputStream is, int width, int height) throws Exception {
-        List<String> allowed = ImageType.PPM.getExpectedHeader();
-        if (allowed.contains(header)) {
-            return header.equals("P6") ? readPSix(is, width, height) : readPThree(is, width, height);
-        } else {
-            throw new InvalidTypeException(
-                    "Only " + allowed.stream().collect(Collectors.joining(" ")) +
-                            " allowed but " + header + " founded");
-        }
-    }
 
     private ColorSpace readPThree(InputStream is, int width, int height) {
         return null;
     }
 
-    private ColorSpace readPSix(InputStream is, int width, int height) throws Exception {
+    private ColorSpace readPSix(InputStream is, int width, int height) throws ImageMappingException {
         int[][] r = new int[height][width];
         int[][] g = new int[height][width];
         int[][] b = new int[height][width];
@@ -97,7 +104,7 @@ public class PPMConvector extends ImageConvector {
                 }
             }
         } catch (IOException e) {
-            throw new Exception("Unexpected end of the file");
+            throw new ImageMappingException("Unexpected end of the file", "PPM file");
         }
 
 

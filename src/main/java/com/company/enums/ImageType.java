@@ -7,13 +7,12 @@ import java.util.Map;
 
 public enum ImageType {
     BMP("bmp", Arrays.asList(new String[]{""})),
+    PNG("png", Arrays.asList(new String[]{"89", "50", "4e", "47", "d", "a", "1a", "a"})),
     PPM("ppm", Arrays.asList(new String[]{"P3", "P6"}));
 
     private String token;
     private List<String> expectedHeader;
     private static final Map<String, ImageType> types = new HashMap<>();
-
-
 
     static {
         Arrays.stream(ImageType.values()).forEach(v ->

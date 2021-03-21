@@ -40,7 +40,7 @@ public class CommandLineParser {
     @SneakyThrows
     private static ImageInstance saveSourcePathVars(ImageInstance inst, String field) {
         inst.setSourceFormat(ImageType.getType(FilenameUtils.getExtension(field.split(" *= *")[1])));
-        inst.setSourcePath(FilenameUtils.getPath(field.split(" *= *")[1]));
+        inst.setSourcePath(field.split(" *= *")[1]);
         inst.setIs(new FileInputStream(field.split(" *= *")[1]));
 
         return inst;
