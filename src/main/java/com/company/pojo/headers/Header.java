@@ -6,11 +6,10 @@ import lombok.Data;
 public class Header {
     private int width;
     private int height;
-    private int depth;
+    private final int depth = 255;
 
-    public Header(int width, int height, int depth) {
+    public Header(int width, int height) {
         this.width = width;
         this.height = height;
-        this.depth = depth;
     }
 }

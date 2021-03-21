@@ -6,14 +6,11 @@ import lombok.SneakyThrows;
 import org.apache.commons.io.FilenameUtils;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.nio.Buffer;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommandLineParser {
@@ -36,11 +33,10 @@ public class CommandLineParser {
     }
 
 
-
     @SneakyThrows
     private static ImageInstance saveSourcePathVars(ImageInstance inst, String field) {
         inst.setSourceFormat(ImageType.getType(FilenameUtils.getExtension(field.split(" *= *")[1])));
-        inst.setSourcePath(FilenameUtils.getPath(field.split(" *= *")[1]));
+        inst.setSourcePath(field.split(" *= *")[1]);
         inst.setIs(new FileInputStream(field.split(" *= *")[1]));
 
         return inst;
@@ -51,20 +47,28 @@ public class CommandLineParser {
         Pattern matcher = Pattern.compile("--.*=.+");
         StringBuffer argBuffer = new StringBuffer();
         for (String arg : args) {
-            if(matcher.matcher(arg).matches()) {
+            if (matcher.matcher(arg).matches()) {
                 imageInstance = parseSingleArg(arg, imageInstance);
             } else {
                 argBuffer.append(arg);
-                if (matcher.matcher(argBuffer.toString()).matches()){
+                if (matcher.matcher(argBuffer.toString()).matches()) {
                     imageInstance = parseSingleArg(argBuffer.toString(), imageInstance);
                     argBuffer.delete(0, argBuffer.length());
                 }
             }
         }
+        if (imageInstance.getOutputPath() == null) {
+            imageInstance.
+                    setOutputPath(FilenameUtils
+                            .getFullPath(imageInstance.getSourcePath())
+                            + FilenameUtils.getBaseName(imageInstance.getSourcePath() )
+                            + "Result."
+                            + imageInstance.getGoalFormat().getToken());
+        }
         return imageInstance;
     }
 
-    private ImageInstance parseSingleArg(String arg, ImageInstance imageInstance){
+    private ImageInstance parseSingleArg(String arg, ImageInstance imageInstance) {
         for (Map.Entry<Predicate<String>, BiFunction<ImageInstance, String, ImageInstance>> entry :
                 keyWords.entrySet()) {
             if (entry.getKey().test(arg)) {
