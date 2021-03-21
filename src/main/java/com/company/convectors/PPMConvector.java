@@ -11,8 +11,10 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class PPMConvector extends ImageConvector {
     private final List<Integer> toSkip = Arrays.asList(10, 32, 9, 0, 35);
@@ -22,11 +24,12 @@ public class PPMConvector extends ImageConvector {
 
         try {
             InputStream is = inst.getIs();
+            String head = readHeader(is, inst.getSourcePath());
             int width = readNextIntASCIIInteger(is);
             int height = readNextIntASCIIInteger(is);
 //            read depth
             readNextIntASCIIInteger(is);
-            ColorSpace colorSpace = checkEncoding(readHeader(is, inst.getSourcePath()), is, width, height);
+            ColorSpace colorSpace = checkEncoding(head, is, width, height);
             inst.setRgb(colorSpace);
             Header ppmHeader = new Header(width, height);
             inst.setHeader(ppmHeader);
@@ -83,8 +86,46 @@ public class PPMConvector extends ImageConvector {
     }
 
 
-    private ColorSpace readPThree(InputStream is, int width, int height) {
-        return null;
+    private ColorSpace readPThree(InputStream is, int width, int height) throws ImageMappingException {
+        int[][] r = new int[height][width];
+        int[][] g = new int[height][width];
+        int[][] b = new int[height][width];
+
+
+        try {
+            int k = is.read();
+            for (int i = 0; i < height; i++) {
+                if (k == 35) {
+                    k = skipComment(is);
+                }
+                for (int j = 0; j < width; j++) {
+                    r[i][j] = skipSpaces(is, k);
+                    g[i][j] = skipSpaces(is, k);
+                    b[i][j] = skipSpaces(is, k);
+                    k = is.read();
+                }
+            }
+        } catch (IOException e) {
+            throw new ImageMappingException("Unexpected end of the file", "PPM file");
+        }
+
+
+        return new ColorSpace(r, g, b);
+    }
+
+    private int skipComment(InputStream is) throws IOException {
+        int k = is.read();
+        while (k != 10) {
+            k = is.read();
+        }
+        return is.read();
+    }
+
+    private int skipSpaces(InputStream is, int k) throws IOException {
+        while (toSkip.contains(k) && is.available() > 0) {
+            k = is.read();
+        }
+        return k;
     }
 
     private ColorSpace readPSix(InputStream is, int width, int height) throws ImageMappingException {
@@ -113,7 +154,7 @@ public class PPMConvector extends ImageConvector {
 
     @Override
     public String write(ImageInstance inst) throws IOException {
-        String fileName = inst.getOutputPath() == null ? inst.getSourcePath() : inst.getOutputPath();
+        String fileName = inst.getOutputPath();
         File result = new File(fileName);
         OutputStream writer = new FileOutputStream(result);
         Header header = inst.getHeader();
@@ -129,7 +170,11 @@ public class PPMConvector extends ImageConvector {
 //        write height
         writer.write(intToByteArr(header.getHeight()));
         writer.write(10);
-        writer.write(intToByteArr(header.getDepth()));
+        int rMax = Arrays.stream(rgb.getR()).flatMapToInt(c -> IntStream.of(Arrays.stream(c).max().getAsInt())).max().getAsInt();
+        int gMax = Arrays.stream(rgb.getG()).flatMapToInt(c -> IntStream.of(Arrays.stream(c).max().getAsInt())).max().getAsInt();
+        int bMax = Arrays.stream(rgb.getB()).flatMapToInt(c -> IntStream.of(Arrays.stream(c).max().getAsInt())).max().getAsInt();
+
+        writer.write(intToByteArr(Collections.max(Arrays.asList(rMax, gMax, bMax))));
         writer.write(10);
 
 

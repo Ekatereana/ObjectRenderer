@@ -10,7 +10,7 @@ import java.io.InputStream;
 public interface ImageMapper {
     ImageInstance read(ImageInstance inst);
 //    reader helpers
-    String readHeader(InputStream is, String fileName) throws ImageMappingException, IOException;
+    Object readHeader(InputStream is, String fileName) throws ImageMappingException, IOException;
 
-    String write(ImageInstance inst) throws IOException;
+    String write(ImageInstance inst) throws IOException, ImageMappingException;
 }

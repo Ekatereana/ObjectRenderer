@@ -17,7 +17,6 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.*;
 import java.util.zip.DataFormatException;
-import java.util.zip.Inflater;
 import java.util.zip.InflaterInputStream;
 
 public class PNGConvector extends ImageConvector {
@@ -38,6 +37,8 @@ public class PNGConvector extends ImageConvector {
     public ImageInstance read(ImageInstance inst) {
 
         try {
+            System.out.println("I'm trying hard, but don't work properly. " +
+                    "So I created cool abstractions. Let's check!");
             InputStream is = inst.getIs();
             readHeader(is, inst.getSourcePath());
             HashMap<ChunkType, Chunk> chunks = new HashMap<>();
@@ -68,7 +69,7 @@ public class PNGConvector extends ImageConvector {
 
     private ColorSpace readPixels(byte[] allContent, ImageInstance inst, HashMap<ChunkType, Chunk> chunks) throws ImageMappingException, IOException, DataFormatException {
         PNGHeader header = (PNGHeader) inst.getHeader();
-       InflaterInputStream decoder = new InflaterInputStream(new ByteArrayInputStream(allContent));
+        InflaterInputStream decoder = new InflaterInputStream(new ByteArrayInputStream(allContent));
         int height = header.getHeight();
         int width = header.getWidth();
         System.out.println(header.getColorType());
@@ -157,7 +158,7 @@ public class PNGConvector extends ImageConvector {
     }
 
     @Override
-    public String write(ImageInstance inst) throws IOException {
-        return super.write(inst);
+    public String write(ImageInstance inst) throws IOException, ImageMappingException {
+        throw new ImageMappingException("Not implemented yet", inst.getSourcePath());
     }
 }
