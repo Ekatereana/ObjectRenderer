@@ -1,9 +1,8 @@
-package com.company.pojo;
+package image.converting.pojo;
 
-import com.company.pojo.headers.Header;
+import image.converting.pojo.headers.Header;
+import image.converting.enums.ImageType;
 import lombok.Data;
-
-import com.company.enums.ImageType;
 
 import java.io.InputStream;
 

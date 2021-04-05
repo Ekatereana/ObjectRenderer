@@ -1,4 +1,4 @@
-package com.company.pojo.headers;
+package image.converting.pojo.headers;
 
 import lombok.Data;
 

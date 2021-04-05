@@ -28,7 +28,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        com.company.Main
+                                        image.converting.Main
                                     </mainClass>
                                 </manifest>
                             </archive>

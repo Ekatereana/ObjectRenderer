@@ -1,7 +1,7 @@
-package com.company;
+package image.converting;
 
-import com.company.enums.ImageType;
-import com.company.pojo.ImageInstance;
+import image.converting.enums.ImageType;
+import image.converting.pojo.ImageInstance;
 import lombok.SneakyThrows;
 import org.apache.commons.io.FilenameUtils;
 

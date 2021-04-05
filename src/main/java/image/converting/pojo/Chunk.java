@@ -1,6 +1,6 @@
-package com.company.pojo;
+package image.converting.pojo;
 
-import com.company.enums.ChunkType;
+import image.converting.enums.ChunkType;
 import lombok.Data;
 
 @Data

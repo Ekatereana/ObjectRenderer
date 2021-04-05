@@ -1,11 +1,11 @@
-package com.company.convectors;
+package image.converting.convectors;
 
-import com.company.abstruct.ImageConvector;
-import com.company.enums.ImageType;
-import com.company.pojo.ColorSpace;
-import com.company.pojo.ImageInstance;
-import com.company.pojo.ImageMappingException;
-import com.company.pojo.headers.Header;
+import image.converting.abstruct.ImageConvector;
+import image.converting.enums.ImageType;
+import image.converting.pojo.ColorSpace;
+import image.converting.pojo.ImageInstance;
+import image.converting.pojo.ImageMappingException;
+import image.converting.pojo.headers.Header;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

@@ -1,13 +1,13 @@
-package com.company.convectors;
+package image.converting.convectors;
 
-import com.company.abstruct.ImageConvector;
-import com.company.enums.ChunkType;
-import com.company.enums.ImageType;
-import com.company.pojo.Chunk;
-import com.company.pojo.ColorSpace;
-import com.company.pojo.ImageInstance;
-import com.company.pojo.ImageMappingException;
-import com.company.pojo.headers.PNGHeader;
+import image.converting.abstruct.ImageConvector;
+import image.converting.enums.ChunkType;
+import image.converting.enums.ImageType;
+import image.converting.pojo.Chunk;
+import image.converting.pojo.ColorSpace;
+import image.converting.pojo.ImageInstance;
+import image.converting.pojo.ImageMappingException;
+import image.converting.pojo.headers.PNGHeader;
 import org.apache.commons.compress.utils.BitInputStream;
 
 import java.io.ByteArrayInputStream;
@@ -90,15 +90,15 @@ public class PNGConvector extends ImageConvector {
         else {
             int k;
             palette = chunk.getContent();
-            BitInputStream reader = new BitInputStream(decoder, ByteOrder.LITTLE_ENDIAN);
-//            System.out.println(header.isOrder());
-//            System.out.println(header.getFilter());
+            BitInputStream reader = new BitInputStream(decoder, ByteOrder.BIG_ENDIAN);
+            System.out.println(header.isOrder());
+            System.out.println(header.getFilter());
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
                     k = BigInteger.valueOf(reader.readBits(header.getBitDepth())).intValue();
-                    r[i][j] = palette[k];
-                    g[i][j] = palette[k + 1];
-                    b[i][j] = palette[k + 2];
+                    r[i][j] = palette[k] & 0xff ;
+                    g[i][j] = palette[k + 1] & 0xff;
+                    b[i][j] = palette[k + 2] & 0xff;
                 }
             }
             return new ColorSpace(r, g, b);

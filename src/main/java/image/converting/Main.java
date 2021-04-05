@@ -1,12 +1,12 @@
-package com.company;
+package image.converting;
 
-import com.company.abstruct.ImageConvector;
-import com.company.convectors.BMPConvector;
-import com.company.convectors.PNGConvector;
-import com.company.convectors.PPMConvector;
-import com.company.enums.ImageType;
-import com.company.pojo.ImageInstance;
-import com.company.pojo.ImageMappingException;
+import image.converting.abstruct.ImageConvector;
+import image.converting.convectors.BMPConvector;
+import image.converting.convectors.PNGConvector;
+import image.converting.convectors.PPMConvector;
+import image.converting.enums.ImageType;
+import image.converting.pojo.ImageInstance;
+import image.converting.pojo.ImageMappingException;
 
 import java.io.IOException;
 import java.util.HashMap;

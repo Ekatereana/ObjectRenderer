@@ -15,7 +15,7 @@
   <manifest></manifest>
   <icon></icon>
   <classPath>
-    <mainClass>com.company.Main</mainClass>
+    <mainClass>image.converting.Main</mainClass>
   </classPath>
   <jre>
     <path></path>

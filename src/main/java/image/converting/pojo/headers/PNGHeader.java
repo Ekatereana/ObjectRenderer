@@ -1,6 +1,5 @@
-package com.company.pojo.headers;
+package image.converting.pojo.headers;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,4 +1,4 @@
-package com.company.enums;
+package image.converting.enums;
 
 import java.util.Arrays;
 import java.util.HashMap;

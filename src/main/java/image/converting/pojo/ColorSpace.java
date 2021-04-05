@@ -1,4 +1,4 @@
-package com.company.pojo;
+package image.converting.pojo;
 
 import lombok.Data;
 

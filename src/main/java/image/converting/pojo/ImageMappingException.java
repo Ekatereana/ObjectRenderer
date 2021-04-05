@@ -1,6 +1,4 @@
-package com.company.pojo;
-
-import com.company.enums.ImageType;
+package image.converting.pojo;
 
 public class ImageMappingException extends Throwable {
     private static final String ERROR_HEADER = "\nERROR while parsing";
