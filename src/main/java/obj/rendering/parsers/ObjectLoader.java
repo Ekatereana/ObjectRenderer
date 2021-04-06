@@ -47,6 +47,7 @@ public class ObjectLoader {
                     lineParser.get(l.split(" ")[0]).accept(l);
                 }
         );
+        System.out.println(lines);
         System.out.println("Parsed");
 
     }
