@@ -43,7 +43,6 @@ public class Main {
             }
 
             for(Vector3 p : ndsPixels){
-                //System.out.println(p);
                 Vector3 currentPixel = p.center(p);
                 screenPixels.add(currentPixel);
             }
@@ -57,20 +56,34 @@ public class Main {
             for (Vector3 p : screenPixels) {
                 double cameraPixelX = Math.round((2 * p.x - 1) * ratio * result * 100d) / 100d;
                 double cameraPixelY = (1 - 2 * p.y) * ratio;
-
                 Vector3 currentCameraPixel = new Vector3(cameraPixelX, cameraPixelY, 0);
                 cameraPixels.add(currentCameraPixel);
             }
 
-            Vector3 a = new Vector3(100, 0, 0);
-            Vector3 b = new Vector3(0, 100, 0);
-            Vector3 c = new Vector3(0, 0, 100);
+            Vector3 a = new Vector3(-1, -1, -5);
+            Vector3 b = new Vector3(1, -1, -5);
+            Vector3 c = new Vector3(0, 1, -5);
+
+
+            //Vector3 a = new Vector3(3.13, 1.71, 0.81);
+            //Vector3 b = new Vector3(4.08, 0.59, 1.68);
+            //Vector3 c = new Vector3(1.4, 1.4, 2.31);
+
+            //Vector3 a = new Vector3(100, 0, 0);
+            //Vector3 b = new Vector3(0, 100, 0);
+            //Vector3 c = new Vector3(0, 0, 100);
 
             Triangle triangle = new Triangle(a, b, c);
+            Vector3 dir = new Vector3(0,-0.1,-1);
 
             MollerTrumbore t = new MollerTrumbore();
-            t.intersectsTriangle(triangle);
 
+            //Number finalResult = t.intersectsTriangle(dir, triangle);
+
+            for (Vector3 p: cameraPixels) {
+                Number finalResult = t.intersectsTriangle(p, triangle);
+                System.out.println(finalResult);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
