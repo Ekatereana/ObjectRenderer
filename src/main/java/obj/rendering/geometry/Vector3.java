@@ -29,14 +29,14 @@ public class Vector3 {
         return x * x + y * y + z * z;
     }
 
-    public Vector3 normalize() {
-        double magnitude = magnitude();
-        if (magnitude > 0) {
-            double inverseMagnitude = 1 / magnitude;
-            return multiply(inverseMagnitude);
-        }
-        return multiply(1);
-    }
+//    public Vector3 normalize() {
+//        double magnitude = magnitude();
+//        if (magnitude > 0) {
+//            double inverseMagnitude = 1 / magnitude;
+//            return multiply(inverseMagnitude);
+//        }
+//        return multiply(1);
+//    }
 
     public double distance(Vector3 v) {
         return subtract(v).magnitude();
@@ -64,6 +64,26 @@ public class Vector3 {
 
     public Vector3 add(Vector3 v) {
         return new Vector3(x + v.x, y + v.y, z + v.z);
+    }
+
+    public Vector3 normalize(Vector3 v, int xSize, int ySize) {
+        double ndcPixelX = ((v.x + 0.5)/ySize);
+        double ndcPixelY = ((v.y + 0.5)/xSize);
+        return new Vector3(ndcPixelX, ndcPixelY, 0);
+    }
+
+    public Vector3 center(Vector3 v) {
+        double screenPixelX = ((2 * v.x + 0.5) - 1);
+        double screenPixelY = (1 - (2 * v.y + 0.5));
+        return new Vector3(screenPixelX, screenPixelY, 0);
+    }
+
+    public Vector3 edge(Vector3 v1, Vector3 v2) {
+        return new Vector3(
+                v2.x - v1.x,
+                v2.y - v1.y,
+                v2.z - v1.z
+        );
     }
 
     @Override
