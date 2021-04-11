@@ -20,6 +20,12 @@ public class Vector3 {
         this.z = z;
     }
 
+    public Vector3(Vector3 position) {
+        this.x = position.x;
+        this.y = position.y;
+        this.z = position.z;
+    }
+
 
     public double magnitude() {
         return Math.sqrt(magnitudeSquared());
@@ -67,8 +73,8 @@ public class Vector3 {
     }
 
     public Vector3 normalize(Vector3 v, int xSize, int ySize) {
-        double ndcPixelX = ((v.x + 0.5)/ySize);
-        double ndcPixelY = ((v.y + 0.5)/xSize);
+        double ndcPixelX = ((v.x + 0.5) / ySize);
+        double ndcPixelY = ((v.y + 0.5) / xSize);
         return new Vector3(ndcPixelX, ndcPixelY, 0);
     }
 

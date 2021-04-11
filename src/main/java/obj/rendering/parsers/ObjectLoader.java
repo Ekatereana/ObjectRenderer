@@ -1,5 +1,6 @@
 package obj.rendering.parsers;
 
+import lombok.Getter;
 import obj.rendering.abstracts.Polygon;
 import obj.rendering.abstracts.Vertex;
 import obj.rendering.geometry.Vector3;
@@ -21,10 +22,16 @@ public class ObjectLoader {
     private final String NORMAL_PREFIX = "vn";
     private final String TEXTURE_PREFIX = "vt";
     private final String SPACE_PREFIX = "vp";
+    @Getter
     private List<Vector3> vertices;
+    @Getter
     private List<Vector3> normals;
+    @Getter
     private List<Polygon> polygons;
     private Map<String, Consumer<String>> lineParser;
+    private Consumer<String> defaultLambda = (l) -> {
+        System.out.println("Ignored. Unknown token while parsing .obj file at line::" + l);
+    };
 
     public ObjectLoader() {
         lineParser = new HashMap();
@@ -32,8 +39,8 @@ public class ObjectLoader {
         lineParser.put(FACE_PREFIX, this::processFace);
         lineParser.put(NORMAL_PREFIX, this::processNormal);
 //        not implemented yet
-        lineParser.put(TEXTURE_PREFIX, (line) -> {});
-        lineParser.put(SPACE_PREFIX, (line) -> {});
+        lineParser.put(TEXTURE_PREFIX, defaultLambda);
+        lineParser.put(SPACE_PREFIX, defaultLambda);
 
         vertices = new ArrayList<>();
         polygons = new ArrayList<>();
@@ -44,10 +51,11 @@ public class ObjectLoader {
         List<String> lines = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
         lines.stream().filter(line -> !(line.isEmpty() || line.startsWith("#"))).forEach(
                 l -> {
-                    lineParser.get(l.split(" ")[0]).accept(l);
+                    (lineParser.get(l.split(" ")[0]) != null ?
+                            lineParser.get(l.split(" ")[0]) : defaultLambda).accept(l);
+
                 }
         );
-        System.out.println(lines);
         System.out.println("Parsed");
 
     }

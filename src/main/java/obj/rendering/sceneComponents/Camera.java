@@ -1,4 +1,4 @@
-package obj.rendering.scenes;
+package obj.rendering.sceneComponents;
 
 import obj.rendering.geometry.Vector3;
 

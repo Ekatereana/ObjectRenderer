@@ -3,7 +3,7 @@ package obj.rendering.geometry;
 public class MollerTrumbore {
     private static final double EPSILON = 0.00001;
 
-    public Number intersectsTriangle(Vector3 dir, Triangle triangle) {
+    public Double intersectsTriangle(Vector3 dir, Triangle triangle) {
         Vector3 origin = new Vector3(0, 0, 0);
 
         Vector3 vertexA = triangle.getA(triangle);
