@@ -9,9 +9,13 @@ import obj.rendering.geometry.Vector3;
 import obj.rendering.graphics.BufferedImageRaster;
 import obj.rendering.parsers.ObjectLoader;
 import obj.rendering.sceneComponents.Camera;
+import obj.rendering.sceneComponents.Screen;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,54 +26,28 @@ public class Main {
     public static void main(String[] args) {
         try {
             ObjectLoader loader = new ObjectLoader();
-            loader.load("C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\main\\java\\resources\\cow.obj");
+            //loader.load("C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\main\\java\\resources\\cow.obj");
 //            loader.load("C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\main\\java\\resources\\piramid.obj");
+            loader.load("C:\\ouroboroser\\programming\\ImageConvecter\\src\\main\\java\\resources\\piramid.obj");
             List<Triangle> triangles =
                     loader.getPolygons().stream().map(Main::mapToTriangle).flatMap(i -> i.stream()).collect(Collectors.toList());
 
             Vector3 pos = new Vector3(0, 0, 0);
             Camera camera = new Camera(pos);
 
-            ArrayList<Vector3> pixels = new ArrayList<Vector3>();
-            ArrayList<Vector3> ndsPixels = new ArrayList<Vector3>();
-            ArrayList<Vector3> screenPixels = new ArrayList<Vector3>();
-            ArrayList<Vector3> cameraPixels = new ArrayList<Vector3>();
-
             int xSize = 640;
             int ySize = 640;
 
-            int[][] screen = new int[xSize][ySize];
+            Screen screen = new Screen(xSize, ySize);
+            ArrayList<Vector3> pixels = new ArrayList<Vector3>();
 
-            for (int y = 0; y < screen.length; y++) {
-                for (int x = 0; x < screen.length; x++) {
-                    Vector3 currentPixel = new Vector3(x, y, 0);
-                    pixels.add(currentPixel);
-                }
-            }
+            screen.fillPixels(pixels);
+            pixels = screen.screen(pixels);
 
-            for (Vector3 p : pixels) {
-                Vector3 currentPixel = p.normalize(p, xSize, ySize);
-                ndsPixels.add(currentPixel);
-            }
+            double angle = screen.calculateAngle();
 
-            for (Vector3 p : ndsPixels) {
-                Vector3 currentPixel = p.center(p);
-                screenPixels.add(currentPixel);
-            }
+            ArrayList<Vector3> cameraPixels = screen.camera(pixels, angle);
 
-            double ratio = ySize / xSize;
-            double fov = 60;
-
-            double tg = Math.toRadians(fov / 2);
-            double result = Math.round(Math.tan(tg) * 100d) / 100d;
-
-            screenPixels.forEach(p -> {
-                double cameraPixelX = Math.round((2 * p.x - 1) * ratio * result * 100d) / 100d;
-                double cameraPixelY = (1 - 2 * p.y) * ratio;
-                Vector3 currentCameraPixel = new Vector3(cameraPixelX, cameraPixelY, 0);
-                cameraPixels.add(currentCameraPixel);
-
-            });
             BufferedImageRaster raster = new BufferedImageRaster(xSize, ySize);
             MollerTrumbore t = new MollerTrumbore();
             triangles.forEach(triangle ->
@@ -79,8 +57,8 @@ public class Main {
                             x = (int) i / xSize;
                             var finalResult = t.intersectsTriangle(cameraPixels.get(i), triangle);
                             if (finalResult != null) {
-                                System.out.println(finalResult);
-                                raster.setPixel(x, i - x * ySize, (byte) 255, (byte) 0, (byte) 0);
+                                raster.setPixel(i- x * ySize, x, (byte) 255, (byte) 0, (byte) 0);
+                                //System.out.println(raster.getPixelColor(x, i - x * ySize));
                             } else {
 //                                raster.setPixel(x, i - x*ySize, (byte)255, (byte)255, (byte)255);
                             }
@@ -154,7 +132,6 @@ public class Main {
             triangles.add(new Triangle(new Transformation(),
                     pillar, ver.get(i).geometry, ver.get(i + 1).geometry));
         }
-        System.out.println(triangles.size());
         return triangles;
     }
 }
