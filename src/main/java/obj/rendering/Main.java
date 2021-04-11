@@ -9,10 +9,13 @@ import obj.rendering.geometry.Vector3;
 import obj.rendering.graphics.BufferedImageRaster;
 import obj.rendering.parsers.ObjectLoader;
 import obj.rendering.sceneComponents.Camera;
+import obj.rendering.sceneComponents.Screen;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.Raster;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,46 +41,19 @@ public class Main {
             Vector3 pos = new Vector3(0, 0, 0);
             Camera camera = new Camera(pos);
 
+            int xSize = 640;
+            int ySize = 640;
+
+            Screen screen = new Screen(xSize, ySize);
             ArrayList<Vector3> pixels = new ArrayList<Vector3>();
-            ArrayList<Vector3> ndsPixels = new ArrayList<Vector3>();
-            ArrayList<Vector3> screenPixels = new ArrayList<Vector3>();
-            ArrayList<Vector3> cameraPixels = new ArrayList<Vector3>();
 
-            int xSize = 1200;
-            int ySize = 1200;
+            screen.fillPixels(pixels);
+            pixels = screen.screen(pixels);
 
-            int[][] screen = new int[xSize][ySize];
+            double angle = screen.calculateAngle();
 
-            for (int y = 0; y < screen.length; y++) {
-                for (int x = 0; x < screen.length; x++) {
-                    Vector3 currentPixel = new Vector3(x, y, 0);
-                    pixels.add(currentPixel);
-                }
-            }
+            ArrayList<Vector3> cameraPixels = screen.camera(pixels, angle);
 
-            for (Vector3 p : pixels) {
-                Vector3 currentPixel = p.normalize(p, xSize, ySize);
-                ndsPixels.add(currentPixel);
-            }
-
-            for (Vector3 p : ndsPixels) {
-                Vector3 currentPixel = p.center(p);
-                screenPixels.add(currentPixel);
-            }
-
-            double ratio = ySize / xSize;
-            double fov = 60;
-
-            double tg = Math.toRadians(fov / 2);
-            double result = Math.round(Math.tan(tg) * 100d) / 100d;
-
-            screenPixels.forEach(p -> {
-                double cameraPixelX = Math.round((2 * p.x - 1) * ratio * result * 100d) / 100d;
-                double cameraPixelY = (1 - 2 * p.y) * ratio;
-                Vector3 currentCameraPixel = new Vector3(cameraPixelX, cameraPixelY, 0);
-                cameraPixels.add(currentCameraPixel);
-
-            });
             BufferedImageRaster raster = new BufferedImageRaster(xSize, ySize, Color.WHITE);
             MollerTrumbore t = new MollerTrumbore();
             triangles.forEach(triangle ->
@@ -159,7 +135,7 @@ public class Main {
         List<Vertex> ver = polygon.getVertices();
         Vector3 pillar = ver.get(0).geometry;
         for (int i = 1; i < ver.size() - 1; i++) {
-            triangles.add(new Triangle(new Transformation(new Vector3(1, -2, -100), new Vector3(0, 1, 0)),
+            triangles.add(new Triangle(new Transformation(),
                     pillar, ver.get(i).geometry, ver.get(i + 1).geometry));
         }
         System.out.println(triangles.size());
