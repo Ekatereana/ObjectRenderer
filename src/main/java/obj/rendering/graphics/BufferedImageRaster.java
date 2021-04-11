@@ -2,14 +2,28 @@ package obj.rendering.graphics;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
+import java.awt.image.Raster;
+import java.util.Arrays;
 
 public class BufferedImageRaster implements RasterToImageMapper {
 
     private final BufferedImage image;
 
     public BufferedImageRaster(int width, int height) {
+
         this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
+    }
+
+    public BufferedImageRaster(int width, int height, Color color) {
+
+        this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                image.setRGB(i, j, color.getRGB());
+            }
+        }
     }
 
     @Override
