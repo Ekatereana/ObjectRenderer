@@ -1,6 +1,8 @@
 package obj.rendering.geometry;
 
-public class Triangle {
+import obj.rendering.sceneComponents.SceneComponent;
+
+public class Triangle extends SceneComponent {
     private Vector3 a;
     private Vector3 b;
     private Vector3 c;
@@ -10,6 +12,14 @@ public class Triangle {
         this.b = b;
         this.c = c;
     }
+
+    public Triangle(Transformation transform, Vector3 v0, Vector3 v1, Vector3 v2) {
+        super(transform);
+        this.a = v0;
+        this.b = v1;
+        this.c = v2;
+    }
+
 
     public Vector3 getA(Triangle t) {
         return t.a;
