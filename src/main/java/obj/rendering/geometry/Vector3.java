@@ -35,14 +35,14 @@ public class Vector3 {
         return x * x + y * y + z * z;
     }
 
-//    public Vector3 normalize() {
-//        double magnitude = magnitude();
-//        if (magnitude > 0) {
-//            double inverseMagnitude = 1 / magnitude;
-//            return multiply(inverseMagnitude);
-//        }
-//        return multiply(1);
-//    }
+    public Vector3 normalize() {
+        double magnitude = magnitude();
+        if (magnitude > 0) {
+            double inverseMagnitude = 1 / magnitude;
+            return multiply(inverseMagnitude);
+        }
+        return multiply(1);
+    }
 
     public double distance(Vector3 v) {
         return subtract(v).magnitude();

@@ -1,6 +1,7 @@
 package obj.rendering.sceneComponents;
 
-import obj.rendering.Box;
+import lombok.Getter;
+import obj.rendering.tree.Box;
 import obj.rendering.geometry.Ray;
 import obj.rendering.geometry.Transformation;
 import obj.rendering.geometry.Vector3;
@@ -8,7 +9,9 @@ import obj.rendering.geometry.Vector3;
 public class SceneComponent {
     private static double DEFAULT_ALBEDO = 0.18;
 
+    @Getter
     protected Transformation transform;
+    @Getter
     protected Mesh mesh;
     protected double albedo = DEFAULT_ALBEDO;
 
@@ -23,14 +26,6 @@ public class SceneComponent {
 
     public SceneComponent() {
         this(new Transformation(), new Mesh());
-    }
-
-    public Transformation getTransform() {
-        return transform;
-    }
-
-    public Mesh getMesh() {
-        return mesh;
     }
 
     public boolean intersect(Ray ray) {

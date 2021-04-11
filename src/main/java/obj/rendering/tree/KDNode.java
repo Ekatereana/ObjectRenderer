@@ -1,6 +1,5 @@
 package obj.rendering.tree;
 
-import obj.rendering.Box;
 import obj.rendering.geometry.Ray;
 import obj.rendering.sceneComponents.SceneComponent;
 

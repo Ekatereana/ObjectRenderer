@@ -13,8 +13,8 @@ public class Screen {
     @Getter
     private final int xSize;
     private final int ySize;
-    private final int [][] screen;
-    private final int [][] pixels;
+//    private final int [][] screen;
+//    private final int [][] pixels;
 
     private double ratio;
 
@@ -22,14 +22,14 @@ public class Screen {
         this.xSize = xSize;
         this.ySize = ySize;
         this.ratio = ySize/xSize;
-        screen = new int[xSize][ySize];
-        pixels = new int[xSize][ySize];
+//        screen = new int[xSize][ySize];
+//        pixels = new int[xSize][ySize];
     }
 
 
     public void fillPixels(ArrayList<Vector3> pixels) {
-        for (int y = 0; y < screen.length; y++) {
-            for (int x = 0; x < screen.length; x++) {
+        for (int y = 0; y < ySize; y++) {
+            for (int x = 0; x < xSize; x++) {
                 Vector3 currentPixel = new Vector3(x, y, 0);
                 pixels.add(currentPixel);
             }

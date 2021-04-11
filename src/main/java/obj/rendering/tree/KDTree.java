@@ -1,7 +1,6 @@
 package obj.rendering.tree;
 
 import lombok.Getter;
-import obj.rendering.Box;
 import obj.rendering.geometry.Ray;
 import obj.rendering.geometry.Transformation;
 import obj.rendering.geometry.Vector3;

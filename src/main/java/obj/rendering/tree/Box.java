@@ -1,4 +1,4 @@
-package obj.rendering;
+package obj.rendering.tree;
 
 
 import obj.rendering.geometry.Ray;
