@@ -8,15 +8,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class BasicScene extends Scene {
-  private List<SceneObject> entities;
+  private List<SceneComponent> entities;
   private Color background;
 
-  public BasicScene(List<SceneObject> entities, Color background) {
+  public BasicScene(List<SceneComponent> entities, Color background) {
     this.entities = entities;
     this.background = background;
   }
 
-  public BasicScene(List<SceneObject> entities) {
+  public BasicScene(List<SceneComponent> entities) {
     this(entities, new Color(0, 0, 0));
   }
 
@@ -25,7 +25,7 @@ public class BasicScene extends Scene {
   }
 
   @Override
-  public List<SceneObject> getSceneObjects() {
+  public List<SceneComponent> getSceneObjects() {
     return entities;
   }
 
@@ -51,7 +51,7 @@ public class BasicScene extends Scene {
   }
 
   @Override
-  public void addSceneObject(SceneObject obj) {
+  public void addSceneObject(SceneComponent obj) {
     entities.add(obj);
   }
 }

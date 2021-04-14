@@ -15,9 +15,6 @@ import java.util.List;
 
 
 public class ParseObjFile implements ObjReader {
-    /**
-     * String indicators of parameter in .obj file.
-     */
     private final static String OBJ_VERTEX_NORMAL = "vn";
     private final static String OBJ_VERTEX = "v";
     private final static String OBJ_FACE = "f";
@@ -33,7 +30,6 @@ public class ParseObjFile implements ObjReader {
         bufferedReader = new BufferedReader(fileReader);
         String line;
 
-        // read .obj file
         while ((line = bufferedReader.readLine()) != null) {
             line = line.trim();
 
@@ -57,10 +53,7 @@ public class ParseObjFile implements ObjReader {
     public List<Triangle> getPolygons() {
         return triangulation.splitPolygons(polygons);
     }
-    /**
-     * Create vertex( just coordinates of each one) from data of file.
-     * @param line
-     */
+
     private void processVertex(String line) {
         String[] values = line.replaceAll("\\s+", " ").split(" ");
         double[] result = new double[3];
@@ -69,10 +62,7 @@ public class ParseObjFile implements ObjReader {
         }
         verticesGeometry.add(new Vector3(result[0], result[1], result[2]));
     }
-    /**
-     * Create normal-data of vertex
-     * @param line
-     */
+
     private void processVertexNormal(String line) {
         String[] values = line.replaceAll("\\s+", " ").split(" ");
         double[] result = new double[3];

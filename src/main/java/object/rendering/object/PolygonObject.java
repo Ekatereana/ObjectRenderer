@@ -2,12 +2,12 @@ package object.rendering.object;
 
 import object.rendering.geometry.Ray;
 import object.rendering.geometry.Vector3;
-import object.rendering.scene.SceneObject;
+import object.rendering.scene.SceneComponent;
 import object.rendering.scene.Transform;
 
 import java.util.List;
 
-public class PolygonObject extends SceneObject {
+public class PolygonObject extends SceneComponent {
 
     private List<Triangle> triangles;
     private Triangle intersection;

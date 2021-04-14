@@ -3,24 +3,16 @@ package object.rendering.object;
 
 import object.rendering.geometry.Ray;
 import object.rendering.geometry.Vector3;
-import object.rendering.scene.SceneObject;
+import object.rendering.scene.SceneComponent;
 import object.rendering.scene.Transform;
 
-public class Triangle extends SceneObject {
+public class Triangle extends SceneComponent {
   private static final double DELTA = 1e-6;
 
   private Vector3 v0; // Points which define triangle
   private Vector3 v1;
   private Vector3 v2;
 
-  /**
-   * Representation of triangle.
-   *
-   * @param transform container of object transformations
-   * @param v0 first vertex of triangle
-   * @param v1 second vertex of triangle
-   * @param v2 third vertex of triangle
-   */
   public Triangle(Transform transform, Vector3 v0, Vector3 v1, Vector3 v2) {
     super(transform);
     this.v0 = v0;

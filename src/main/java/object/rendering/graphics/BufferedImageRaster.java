@@ -8,7 +8,7 @@ public class BufferedImageRaster implements Raster {
   private final BufferedImage image;
 
   public BufferedImageRaster(int width, int height) {
-    // Image Data Model compatible with default screen device to avoid any conversions while rendering
+
     if (!GraphicsEnvironment.isHeadless()) {
       image = GraphicsEnvironment.getLocalGraphicsEnvironment()
               .getDefaultScreenDevice()

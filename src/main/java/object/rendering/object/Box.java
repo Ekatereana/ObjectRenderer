@@ -2,11 +2,11 @@ package object.rendering.object;
 
 import object.rendering.geometry.Ray;
 import object.rendering.geometry.Vector3;
-import object.rendering.scene.SceneObject;
+import object.rendering.scene.SceneComponent;
 import object.rendering.scene.Transform;
 
 
-public class Box extends SceneObject {
+public class Box extends SceneComponent {
   private static final double DELTA = 1e-6;
   private static final double DEFAULT_SIZE = 1;
 

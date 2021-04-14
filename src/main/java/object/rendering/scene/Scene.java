@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public abstract class Scene {
 
-  public abstract List<SceneObject> getSceneObjects();
+  public abstract List<SceneComponent> getSceneObjects();
 
   public abstract List<Light> getLights();
 
@@ -15,9 +15,9 @@ public abstract class Scene {
 
   abstract Color getBackgroundColor();
 
-  public abstract void addSceneObject(SceneObject obj);
+  public abstract void addSceneObject(SceneComponent obj);
 
-  public void addSceneObjects(SceneObject... obj) {
+  public void addSceneObjects(SceneComponent... obj) {
     Arrays.stream(obj).forEach(this::addSceneObject);
   }
 }
