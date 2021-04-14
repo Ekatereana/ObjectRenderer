@@ -24,12 +24,13 @@ public class Main {
     public static void main(String[] args) {
         try {
             ObjectLoader loader = new ObjectLoader();
-            loader.load("C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\main\\java\\resources\\cow.obj");
+            //loader.load("C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\main\\java\\resources\\cow.obj");
 //            loader.load("C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\main\\java\\resources\\piramid.obj");
 //            loader.load("C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\main\\java\\resources\\sphere.obj");
 //            loader.load("C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\main\\java\\resources\\simplecow.obj");
 //            loader.load("C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\main\\java\\resources\\simplecowStill.obj");
 //            loader.load("C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\main\\java\\resources\\center.obj");
+            loader.load("C:\\Users\\38063\\Desktop\\ImageConvecter\\src\\main\\java\\resources\\COW.obj");
             List<Triangle> triangles =
                     loader.getPolygons().stream().map(Main::mapToTriangle)
                             .flatMap(i -> i.stream())
@@ -55,6 +56,12 @@ public class Main {
 
             BasicRaytracingRender render = new BasicRaytracingRender(scene);
             render.render(scene);
+
+            for (int i = 0; i < xSize; i++) {
+                for (int j = 0; j < ySize; j++) {
+                    System.out.println(render.getRaster().getPixelColor(i, j));
+                }
+            }
 
             File outputfile = new File("result.png");
             try {
