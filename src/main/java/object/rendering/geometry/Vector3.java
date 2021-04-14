@@ -1,7 +1,7 @@
 package object.rendering.geometry;
 
 public class Vector3 implements Cloneable {
-  // Accuracy of comparing two double values
+
   private static final double COORDINATES_PRECISION = 1e-10;
 
   public static final Vector3 ZERO = new Vector3(0, 0, 0);

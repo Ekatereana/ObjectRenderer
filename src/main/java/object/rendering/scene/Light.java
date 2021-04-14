@@ -2,7 +2,7 @@ package object.rendering.scene;
 
 import object.rendering.geometry.Vector3;
 
-public abstract class Light extends SceneObject {
+public abstract class Light extends SceneComponent {
 
   private double intensity;
 

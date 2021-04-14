@@ -57,7 +57,7 @@ public class BasicRaytracingRender implements SceneRender {
   }
 
   Color getColor(Ray primaryRay, Scene scene) {
-    SceneObject obj = findInteraction(primaryRay, scene);
+    SceneComponent obj = findInteraction(primaryRay, scene);
 
     if (obj == null) {
       return scene.getBackgroundColor();
@@ -86,13 +86,13 @@ public class BasicRaytracingRender implements SceneRender {
     return new Color((int) (obj.getMesh().color().getRed() * c), (int) (obj.getMesh().color().getGreen() * c), (int) (obj.getMesh().color().getBlue() * c));
   }
 
-  SceneObject findInteraction(Ray primaryRay, Scene scene) {
+  SceneComponent findInteraction(Ray primaryRay, Scene scene) {
     return findInteraction(primaryRay, scene, Double.POSITIVE_INFINITY);
   }
 
-  SceneObject findInteraction(Ray primaryRay, Scene scene, double minDistance) {
-    SceneObject intersection = null;
-    for (SceneObject obj : scene.getSceneObjects()) {
+  SceneComponent findInteraction(Ray primaryRay, Scene scene, double minDistance) {
+    SceneComponent intersection = null;
+    for (SceneComponent obj : scene.getSceneObjects()) {
       if (obj.intersect(primaryRay)) {
         double distance = primaryRay.getScale();
         if (distance < minDistance) {

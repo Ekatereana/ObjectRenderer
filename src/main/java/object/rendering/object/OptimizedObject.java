@@ -1,20 +1,19 @@
 package object.rendering.object;
 
-
 import object.rendering.geometry.Ray;
 import object.rendering.geometry.Vector3;
-import object.rendering.scene.SceneObject;
+import object.rendering.scene.SceneComponent;
 import object.rendering.scene.Transform;
 import object.rendering.tree.KDTree;
 
 import java.util.List;
 
-public class OptimizedObject extends SceneObject {
+public class OptimizedObject extends SceneComponent {
   private KDTree tree;
 
-  public OptimizedObject(Transform transform, List<SceneObject> objects) {
+  public OptimizedObject(Transform transform, List<SceneComponent> objects) {
     super(transform);
-    for (SceneObject obj : objects) {
+    for (SceneComponent obj : objects) {
       obj.getTransform().setParent(transform);
     }
     tree = new KDTree(objects);
@@ -32,7 +31,7 @@ public class OptimizedObject extends SceneObject {
 
   @Override
   public Vector3 getNormal(Vector3 hitPoint) {
-    SceneObject obj = tree.getIntersection();
+    SceneComponent obj = tree.getIntersection();
     if (obj == null) {
       return super.getNormal(hitPoint);
     }

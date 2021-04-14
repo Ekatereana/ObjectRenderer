@@ -3,7 +3,7 @@ package object.rendering.tree;
 import object.rendering.geometry.Ray;
 import object.rendering.geometry.Vector3;
 import object.rendering.object.Box;
-import object.rendering.scene.SceneObject;
+import object.rendering.scene.SceneComponent;
 import object.rendering.scene.Transform;
 
 import java.util.ArrayList;
@@ -12,20 +12,20 @@ import java.util.List;
 public class KDTree {
   private static final double MIN_NUMBER_OF_OBJECTS = 5;
   private KDNode root;
-  private SceneObject intersection;
+  private SceneComponent intersection;
 
-  public KDTree(List<SceneObject> objects) {
+  public KDTree(List<SceneComponent> objects) {
     Box box = getBoundary(objects);
     root = buildNode(objects, box);
   }
 
-  private Box getBoundary(List<SceneObject> objects) {
+  private Box getBoundary(List<SceneComponent> objects) {
     if (objects.size() == 0) {
       return new Box(new Transform(), Vector3.ZERO, Vector3.ZERO);
     }
     Vector3 lowerBound = new Vector3(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE);
     Vector3 upperBound = new Vector3(Double.MIN_VALUE, Double.MIN_VALUE, Double.MIN_VALUE);
-    for (SceneObject obj : objects) {
+    for (SceneComponent obj : objects) {
       Box boundary = obj.getBoundary();
       if (boundary == null) {
         continue;
@@ -50,7 +50,7 @@ public class KDTree {
     return new Box(new Transform(), lowerBound, upperBound);
   }
 
-  private KDNode buildNode(List<SceneObject> objects, Box box) {
+  private KDNode buildNode(List<SceneComponent> objects, Box box) {
     if (objects.size() <= MIN_NUMBER_OF_OBJECTS) {
       return new KDNode(objects, box, new KDNode[0]);
     }
@@ -58,7 +58,7 @@ public class KDTree {
     return new KDNode(objects, box, children);
   }
 
-  private KDNode[] getChildren(List<SceneObject> objects, Box box) {
+  private KDNode[] getChildren(List<SceneComponent> objects, Box box) {
     Vector3 mid  = new Vector3(
             (box.upperBounds.x + box.lowerBounds.x) / 2,
             (box.upperBounds.y + box.lowerBounds.y) / 2,
@@ -86,9 +86,9 @@ public class KDTree {
     return children;
   }
 
-  private List<SceneObject> getObjectInBox(List<SceneObject> objects, Box box) {
-    ArrayList<SceneObject> res = new ArrayList<>();
-    for (SceneObject obj : objects) {
+  private List<SceneComponent> getObjectInBox(List<SceneComponent> objects, Box box) {
+    ArrayList<SceneComponent> res = new ArrayList<>();
+    for (SceneComponent obj : objects) {
       Box boundary = obj.getBoundary();
       if (boundary == null) {
         continue;
@@ -97,7 +97,7 @@ public class KDTree {
         res.add(obj);
       }
     }
-    for (SceneObject obj : res) {
+    for (SceneComponent obj : res) {
       objects.remove(obj);
     }
     return res;
@@ -118,7 +118,7 @@ public class KDTree {
     return intersection != null;
   }
 
-  public SceneObject getIntersection() {
+  public SceneComponent getIntersection() {
     return intersection;
   }
 

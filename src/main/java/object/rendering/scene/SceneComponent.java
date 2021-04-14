@@ -4,7 +4,7 @@ import object.rendering.geometry.Ray;
 import object.rendering.geometry.Vector3;
 import object.rendering.object.Box;
 
-public class SceneObject {
+public class SceneComponent {
 
   private static double DEFAULT_ALBEDO = 0.18;
 
@@ -12,22 +12,16 @@ public class SceneObject {
   protected Mesh mesh;
   protected double albedo = DEFAULT_ALBEDO;
 
-  /**
-   * Base class of scene objects.
-   *
-   * @param transform container of object transformations
-   * @param mesh container of
-   */
-  public SceneObject(Transform transform, Mesh mesh) {
+  public SceneComponent(Transform transform, Mesh mesh) {
     this.transform = transform;
     this.mesh = mesh;
   }
 
-  public SceneObject(Transform transform) {
+  public SceneComponent(Transform transform) {
     this(transform, new Mesh());
   }
 
-  public SceneObject() {
+  public SceneComponent() {
     this(new Transform(), new Mesh());
   }
 

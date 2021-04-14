@@ -10,12 +10,6 @@ public class Transform {
   private Matrix44 matrix;
   private Transform parent;
 
-  /**
-   * Container of object transformations.
-   *
-   * @param position position of object relatively to world coordinates
-   * @param rotation rotation around axes in euler angels
-   */
   public Transform(Vector3 position, Vector3 rotation) {
     this.position = position;
     this.rotation = rotation;
