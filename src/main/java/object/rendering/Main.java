@@ -24,8 +24,8 @@ public class Main {
     }
 
     private void start() throws IOException {
-        Vector3 objTransform1 = new Vector3(-1, 0, 0 );
-        Vector3 objTransform2 = new Vector3(10, 10, 10);
+        Vector3 objPosition = new Vector3(-1, 0, 0 );
+        Vector3 objRotation = new Vector3(10, 10, 10);
 
         Vector3 lightDir = new Vector3(0, 0, 0);
         Vector3 cameraDir = new Vector3(10, -10, 0);
@@ -36,7 +36,7 @@ public class Main {
 
         parser.load(new FileInputStream(new File("C:\\ouroboroser\\cow.obj")));
 
-        OptimizedObject obj = new OptimizedObject(new Transform(Vector3.ZERO, objTransform1, objTransform2),
+        OptimizedObject obj = new OptimizedObject(new Transform(Vector3.ZERO, objPosition, objRotation),
                 parser.getPolygons().stream().map(el -> (SceneComponent) el).collect(Collectors.toList()));
         obj.getMesh().setColor(new Color(0, 255, 0));
 
