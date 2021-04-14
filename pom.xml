@@ -28,7 +28,7 @@
                             <archive>
                                 <manifest>
                                     <mainClass>
-                                        image.converting.Main
+                                        Main
                                     </mainClass>
                                 </manifest>
                             </archive>
@@ -66,6 +66,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-compress</artifactId>
             <version>1.10</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.burningwave</groupId>
+            <artifactId>core</artifactId>
+            <version>8.21.1</version>
         </dependency>
     </dependencies>
 

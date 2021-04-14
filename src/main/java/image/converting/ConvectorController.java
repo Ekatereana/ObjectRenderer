@@ -1,5 +1,6 @@
 package image.converting;
 
+import command.line.parser.CommandLineParser;
 import image.converting.abstruct.ImageConvector;
 import image.converting.convectors.BMPConvector;
 import image.converting.convectors.PNGConvector;
@@ -10,19 +11,22 @@ import image.converting.pojo.ImageMappingException;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Supplier;
 
-public class Main {
-    public static void main(String[] args) {
-        HashMap<ImageType, Supplier<ImageConvector>> factory = new HashMap<>();
+public class ConvectorController {
+    private static Map<ImageType, Supplier<ImageConvector>> factory;
+    private CommandLineParser parser;
+
+    static {
+        factory = new HashMap<>();
         factory.put(ImageType.PPM, () -> new PPMConvector());
         factory.put(ImageType.BMP, () -> new BMPConvector());
         factory.put(ImageType.PNG, () -> new PNGConvector());
         factory.put(ImageType.UNKNOWN, () -> null);
-        CommandLineParser parser = new CommandLineParser();
-        long start;
-        long end;
+    }
 
+    public void run(String[] args){
         try {
             ImageInstance ii = parser.parseCommandLineArgs(args);
             if (ii.getGoalFormat().equals(ImageType.UNKNOWN)) {
@@ -35,7 +39,5 @@ public class Main {
             e.printStackTrace();
             System.out.println("Try again please");
         }
-
     }
 }
-

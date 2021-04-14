@@ -1,4 +1,4 @@
-package image.converting;
+package command.line.parser;
 
 import image.converting.enums.ImageType;
 import image.converting.pojo.ImageInstance;
