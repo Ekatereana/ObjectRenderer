@@ -11,6 +11,8 @@ target/
 # Log file
 *.log
 
+resources
+
 # BlueJ files
 *.ctxt
 
