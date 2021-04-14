@@ -4,6 +4,7 @@ package object.rendering.io.obj;
 import object.rendering.geometry.Triangulation;
 import object.rendering.geometry.Vector3;
 import object.rendering.object.Triangle;
+import org.di.framework.annotations.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class ParseObjFile implements ObjReader {
     private final static String OBJ_VERTEX_NORMAL = "vn";
     private final static String OBJ_VERTEX = "v";

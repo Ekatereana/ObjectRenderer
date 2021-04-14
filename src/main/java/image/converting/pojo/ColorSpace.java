@@ -13,4 +13,5 @@ public class ColorSpace {
         this.b = b;
         this.g = g;
     }
+
 }

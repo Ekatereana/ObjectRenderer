@@ -1,23 +1,26 @@
 package object.rendering.graphics;
 
+import lombok.Data;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+@Data
 public class ArrayRaster implements Raster {
 
   private final int width;
   private final int height;
 
-  private byte[][] red;
-  private byte[][] green;
-  private byte[][] blue;
+  private int[][] red;
+  private int[][] green;
+  private int[][] blue;
 
   public ArrayRaster(int width, int height) {
     this.width = width;
     this.height = height;
-    this.red = new byte[width][height];
-    this.green = new byte[width][height];
-    this.blue = new byte[width][height];
+    this.red = new int[width][height];
+    this.green = new int[width][height];
+    this.blue = new int[width][height];
   }
 
   public Image toImage() {

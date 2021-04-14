@@ -5,7 +5,7 @@ import image.converting.enums.ChunkType;
 import image.converting.enums.ImageType;
 import image.converting.pojo.Chunk;
 import image.converting.pojo.ColorSpace;
-import image.converting.pojo.ImageInstance;
+import command.line.parser.instances.ImageInstance;
 import image.converting.pojo.ImageMappingException;
 import image.converting.pojo.headers.PNGHeader;
 import org.apache.commons.compress.utils.BitInputStream;

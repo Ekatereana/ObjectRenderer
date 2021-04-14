@@ -1,22 +1,23 @@
 package image.converting;
 
-import command.line.parser.CommandLineParser;
 import image.converting.abstruct.ImageConvector;
 import image.converting.convectors.BMPConvector;
 import image.converting.convectors.PNGConvector;
 import image.converting.convectors.PPMConvector;
 import image.converting.enums.ImageType;
-import image.converting.pojo.ImageInstance;
+import command.line.parser.instances.ImageInstance;
 import image.converting.pojo.ImageMappingException;
+import org.di.framework.annotations.Component;
+import services.ConvecterService;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class ConvectorController {
+@Component
+public class ConvectorController implements ConvecterService {
     private static Map<ImageType, Supplier<ImageConvector>> factory;
-    private CommandLineParser parser;
 
     static {
         factory = new HashMap<>();
@@ -26,9 +27,24 @@ public class ConvectorController {
         factory.put(ImageType.UNKNOWN, () -> null);
     }
 
-    public void run(String[] args){
+
+    @Override
+    public void convertTo(ImageInstance ii){
         try {
-            ImageInstance ii = parser.parseCommandLineArgs(args);
+            if (ii.getGoalFormat().equals(ImageType.UNKNOWN)) {
+                throw new ImageMappingException("Unknown file format", ii.getSourcePath());
+            }
+            ImageConvector to = factory.get(ii.getGoalFormat()).get();
+            to.write(ii);
+        } catch (NullPointerException | IOException | ImageMappingException e) {
+            e.printStackTrace();
+            System.out.println("Try again please");
+        }
+    }
+
+    @Override
+    public void convertFrom(ImageInstance ii){
+        try {
             if (ii.getGoalFormat().equals(ImageType.UNKNOWN)) {
                 throw new ImageMappingException("Unknown file format", ii.getSourcePath());
             }
@@ -39,5 +55,10 @@ public class ConvectorController {
             e.printStackTrace();
             System.out.println("Try again please");
         }
+
     }
+
+
+
+
 }

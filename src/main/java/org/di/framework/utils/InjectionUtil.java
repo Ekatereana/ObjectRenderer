@@ -1,13 +1,14 @@
 package org.di.framework.utils;
 
-import static org.burningwave.core.assembler.StaticComponentContainer.Fields;
+import org.burningwave.core.classes.FieldCriteria;
+import org.di.framework.Injector;
+import org.di.framework.annotations.Autowired;
+import org.di.framework.annotations.Qualifier;
 
 import java.lang.reflect.Field;
 import java.util.Collection;
 
-import org.burningwave.core.classes.FieldCriteria;
-import org.di.framework.Injector;
-import org.di.framework.annotations.Autowired;
+import static org.burningwave.core.assembler.StaticComponentContainer.Fields;
 
 public class InjectionUtil {
 
@@ -26,6 +27,14 @@ public class InjectionUtil {
                 ),
                 classz
         );
+        for (Field field : fields) {
+            String qualifier = field.isAnnotationPresent(Qualifier.class)
+                    ? field.getAnnotation(Qualifier.class).value()
+                    : null;
+            Object fieldInstance = injector.getBeanInstance(field.getType(), field.getName(), qualifier);
+            Fields.setDirect(classInstance, field, fieldInstance);
+            autowire(injector, fieldInstance.getClass(), fieldInstance);
+        }
     }
 
 }

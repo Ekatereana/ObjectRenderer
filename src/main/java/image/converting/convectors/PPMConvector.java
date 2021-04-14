@@ -3,7 +3,7 @@ package image.converting.convectors;
 import image.converting.abstruct.ImageConvector;
 import image.converting.enums.ImageType;
 import image.converting.pojo.ColorSpace;
-import image.converting.pojo.ImageInstance;
+import command.line.parser.instances.ImageInstance;
 import image.converting.pojo.ImageMappingException;
 import image.converting.pojo.headers.Header;
 
