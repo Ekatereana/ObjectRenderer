@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 
+.m2/settings.xml
 
 .idea/
 
@@ -17,6 +18,8 @@ resources
 
 # BlueJ files
 *.ctxt
+
+gradle.properties
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
