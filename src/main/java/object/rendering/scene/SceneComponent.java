@@ -6,7 +6,7 @@ import object.rendering.object.Box;
 
 public class SceneComponent {
 
-  private static double DEFAULT_ALBEDO = 0.18;
+  private static double DEFAULT_ALBEDO = 0.12;
 
   protected Transform transform;
   protected Mesh mesh;

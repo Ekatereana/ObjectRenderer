@@ -60,23 +60,22 @@ public class BasicRaytracingRender implements SceneRender {
     SceneComponent obj = findInteraction(primaryRay, scene);
 
     if (obj == null) {
-      return scene.getBackgroundColor();
+      return Color.WHITE;
     }
 
     if (!applyShading) {
       return obj.getMesh().color();
     }
 
-    double c = 0;
+    double c = 0.0;
 
     for (Light light : scene.getLights()) {
       Vector3 hitNormal = obj.getNormal(primaryRay.getPoint());
-      double bias = 0.005;
-//      Ray nRay = new Ray(primaryRay.getPoint().add(hitNormal.multiply(bias)), light.getTransform().rotation().multiply(1));
-//      boolean visible = findInteraction(nRay, scene, light.getMaxDist(primaryRay.getPoint())) == null;
-      boolean visible = true;
+      double bias = 0.7;
+      Ray nRay = new Ray(primaryRay.getPoint().add(hitNormal.multiply(bias)), light.getTransform().rotation().multiply(1));
+      boolean visible = findInteraction(nRay, scene, light.getMaxDist(primaryRay.getPoint())) == null;
       if (visible) {
-        c += obj.albedo() / Math.PI * light.illuminate(hitNormal, light.getTransform().position().distance(obj.getTransform().position()));
+        c += (obj.albedo() / Math.PI * light.illuminate(hitNormal, light.getTransform().position().distance(obj.getTransform().position())));
       }
     }
 

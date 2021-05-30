@@ -6,7 +6,7 @@ public class Main {
         String [] temp = new String[]{
                 "--source",
                 "=",
-                "\"C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\src\\cow.obj\"",
+                "C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\cow.obj",
                 "--output=",
                 "\"result11.png\""};
         Injector.startApplication(AppRunner.class);

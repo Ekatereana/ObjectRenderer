@@ -35,20 +35,20 @@ public class ObjectRenderingController implements RenderConfig, RenderService {
 
         ParseObjFile parser = new ParseObjFile();
         parser.load(new FileInputStream(path));
-        OptimizedObject obj = new OptimizedObject(new Transform(Vector3.ZERO, objTransform1, objTransform2),
+        OptimizedObject obj = new OptimizedObject(new Transform(Vector3.ZERO, objTransform11, objTransform2),
                 parser.getPolygons().stream().map(el -> (SceneComponent) el).collect(Collectors.toList()));
-        obj.getMesh().setColor(new Color(0, 255, 0));
+        obj.getMesh().setColor(new Color(150, 155, 255));
 
         Camera camera = createArrayCamera();
-        Light light = new DistantLight(new Transform(lightDir), 40000);
-        Light subLight = new DistantLight(new Transform(secondLightDir), 2000);
+        Light light = new DistantLight(new Transform(lightDir), 400, lightDir);
+//        Light subLight = new DistantLight(new Transform(secondLightDir), 20, secondLightDir);
         camera.getTransform().setParent(screen.getTransform());
         camera.lookAt(cameraDir, obj.getTransform().position());
         scene.addSceneObjects(camera);
         scene.addSceneObjects(obj);
         scene.addSceneObjects(light);
-        Sphere sphere = new Sphere(new Transform(Vector3.FORWARD.multiply(5)), 1);
-        sphere.getMesh().setColor(Color.RED);
+        Sphere sphere = new Sphere(new Transform(new Vector3(0, -2, 2)), 1);
+        sphere.getMesh().setColor(new Color(150, 155, 255));
         scene.addSceneObject(sphere);
 //        scene.addSceneObjects(subLight);
 
@@ -56,7 +56,7 @@ public class ObjectRenderingController implements RenderConfig, RenderService {
         BasicRaytracingRender render = new BasicRaytracingRender(scene);
         render.render(scene);
 
-        File outputfile = new File("result2.png");
+        File outputfile = new File("asserts/shadingExample.png");
         try {
             ImageIO.write((BufferedImage) render.getRaster().toImage(), "png", outputfile);
         } catch (IOException e) {

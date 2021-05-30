@@ -19,7 +19,7 @@ public class DemoScene extends BasicScene {
             sphere,
             new Box(new Transform(new Vector3(2, 2, -3)), 1),
             other,
-            new DistantLight(new Transform(Vector3.ZERO, new Vector3(0, -1, 0)), 10)
+            new DistantLight(new Transform(Vector3.ZERO, new Vector3(0, -1, 0)), 10, Vector3.FORWARD)
             //new PointLight(new Transform(new Vector3(0, 0, -1), new Vector3(0, -1, 0)), 1000)
     );
   }

@@ -16,9 +16,16 @@ public class Triangulation {
     for (Polygon pol : polygons) {
       List<Vertex> ver = pol.getVertices();
       Vector3 pillar = ver.get(0).geometry;
+      Vector3 pilarNormal = ver.get(0).normal;
       for (int i = 1; i < ver.size() - 1; i++) {
-        triangles.add(new Triangle(new Transform(),
-                pillar, ver.get(i).geometry, ver.get(i + 1).geometry));
+        triangles.add(new Triangle(
+                new Transform(),
+                pillar,
+                pilarNormal,
+                ver.get(i).geometry,
+                ver.get(i).normal,
+                ver.get(i + 1).geometry,
+                ver.get(i + 1).normal));
       }
     }
     System.out.println(triangles.size());

@@ -26,12 +26,12 @@ image/converting/enums/ChunkType.java
  image.converting.enums.ChunkType
 object/rendering/scene/Mesh.java
  object.rendering.scene.Mesh
-object/rendering/ObjectRenderingController.java
- object.rendering.ObjectRenderingController
+object/rendering/io/obj/ParseObjFile.java
+ object.rendering.io.obj.ParseObjFile
 object/rendering/scene/Scene.java
  object.rendering.scene.Scene
-object/rendering/scene/BasicRaytracingRender.java
- object.rendering.scene.BasicRaytracingRender
+image/converting/pojo/headers/PNGHeader.java
+ image.converting.pojo.headers.PNGHeader
 command/line/parser/CommandLineParserService.java
  command.line.parser.CommandLineParserService
 services/RenderService.java
@@ -72,8 +72,8 @@ image/converting/convectors/PPMConvector.java
  image.converting.convectors.PPMConvector
 object/rendering/scene/BasicScene.java
  object.rendering.scene.BasicScene
-object/rendering/io/obj/ParseObjFile.java
- object.rendering.io.obj.ParseObjFile
+Main.java
+ Main
 object/rendering/object/Box.java
  object.rendering.object.Box
 object/rendering/geometry/Triangulation.java
@@ -116,7 +116,7 @@ org/di/framework/annotations/Component.java
  org.di.framework.annotations.Component
 image/converting/convectors/PNGConvector.java
  image.converting.convectors.PNGConvector
-image/converting/pojo/headers/PNGHeader.java
- image.converting.pojo.headers.PNGHeader
-Main.java
- Main
+object/rendering/ObjectRenderingController.java
+ object.rendering.ObjectRenderingController
+object/rendering/scene/BasicRaytracingRender.java
+ object.rendering.scene.BasicRaytracingRender
