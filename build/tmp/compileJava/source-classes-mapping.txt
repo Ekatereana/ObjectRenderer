@@ -14,8 +14,6 @@ image/converting/abstruct/ImageConvector.java
  image.converting.abstruct.ImageConvector
 services/CommandLineParserService.java
  services.CommandLineParserService
-scene/format/parser/SceneFormatParser.java
- scene.format.parser.SceneFormatParser
 object/rendering/io/obj/ObjReader.java
  object.rendering.io.obj.ObjReader
 object/rendering/object/Sphere.java
@@ -74,8 +72,8 @@ image/converting/convectors/PPMConvector.java
  image.converting.convectors.PPMConvector
 object/rendering/scene/BasicScene.java
  object.rendering.scene.BasicScene
-Main.java
- Main
+object/rendering/io/obj/ParseObjFile.java
+ object.rendering.io.obj.ParseObjFile
 object/rendering/object/Box.java
  object.rendering.object.Box
 object/rendering/geometry/Triangulation.java
@@ -120,5 +118,5 @@ image/converting/convectors/PNGConvector.java
  image.converting.convectors.PNGConvector
 image/converting/pojo/headers/PNGHeader.java
  image.converting.pojo.headers.PNGHeader
-object/rendering/io/obj/ParseObjFile.java
- object.rendering.io.obj.ParseObjFile
+Main.java
+ Main

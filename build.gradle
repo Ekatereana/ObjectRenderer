@@ -11,6 +11,12 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_10
 }
 
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'Image Convecter',
+                'Main-Class': 'main.java.Main'
+    }
+}
 repositories {
     mavenLocal()
     mavenCentral()
@@ -47,4 +53,15 @@ publishing {
             from(components.java)
         }
     }
+}
+
+ext {
+    javaMainClass = "Main"
+}
+
+task runWithJavaExec(type: JavaExec) {
+    group = "Execution"
+    description = "Run the main class with JavaExecTask"
+    classpath = sourceSets.main.runtimeClasspath
+    main = javaMainClass
 }

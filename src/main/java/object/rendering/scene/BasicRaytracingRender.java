@@ -72,8 +72,9 @@ public class BasicRaytracingRender implements SceneRender {
     for (Light light : scene.getLights()) {
       Vector3 hitNormal = obj.getNormal(primaryRay.getPoint());
       double bias = 0.005;
-      Ray nRay = new Ray(primaryRay.getPoint().add(hitNormal.multiply(bias)), light.getTransform().rotation().multiply(1));
-      boolean visible = findInteraction(nRay, scene, light.getMaxDist(primaryRay.getPoint())) == null;
+//      Ray nRay = new Ray(primaryRay.getPoint().add(hitNormal.multiply(bias)), light.getTransform().rotation().multiply(1));
+//      boolean visible = findInteraction(nRay, scene, light.getMaxDist(primaryRay.getPoint())) == null;
+      boolean visible = true;
       if (visible) {
         c += obj.albedo() / Math.PI * light.illuminate(hitNormal, light.getTransform().position().distance(obj.getTransform().position()));
       }
@@ -95,7 +96,7 @@ public class BasicRaytracingRender implements SceneRender {
     for (SceneComponent obj : scene.getSceneObjects()) {
       if (obj.intersect(primaryRay)) {
         double distance = primaryRay.getScale();
-        if (distance < minDistance) {
+        if (distance <= minDistance) {
           minDistance = distance;
           intersection = obj;
         }
