@@ -6,7 +6,7 @@ import object.rendering.object.Box;
 
 public class SceneComponent {
 
-  private static double DEFAULT_ALBEDO = 0.18;
+  private static double DEFAULT_ALBEDO = 0.12;
 
   protected Transform transform;
   protected Mesh mesh;
@@ -45,5 +45,13 @@ public class SceneComponent {
 
   public double albedo() {
     return albedo;
+  }
+
+  public Vector3 getHalfwayVector(Vector3 n, Vector3 lightDir) {
+//    vector(R)*vector(V) = 2(v(N)*v(L)*v(N) - (L))
+    double nl = n.dotProduct(lightDir);
+    Vector3 reflectRayDir = n.multiply(nl * (-2)).add(lightDir);
+    return reflectRayDir;
+
   }
 }

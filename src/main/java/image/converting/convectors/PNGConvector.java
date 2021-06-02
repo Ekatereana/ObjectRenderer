@@ -1,22 +1,23 @@
 package image.converting.convectors;
 
+import command.line.parser.instances.ImageInstance;
 import image.converting.abstruct.ImageConvector;
 import image.converting.enums.ChunkType;
 import image.converting.enums.ImageType;
 import image.converting.pojo.Chunk;
 import image.converting.pojo.ColorSpace;
-import command.line.parser.instances.ImageInstance;
 import image.converting.pojo.ImageMappingException;
 import image.converting.pojo.headers.PNGHeader;
 import org.apache.commons.compress.utils.BitInputStream;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.List;
 import java.util.*;
 import java.util.zip.DataFormatException;
 import java.util.zip.InflaterInputStream;
@@ -96,7 +97,7 @@ public class PNGConvector extends ImageConvector {
             for (int i = 0; i < height; i++) {
                 for (int j = 0; j < width; j++) {
                     k = BigInteger.valueOf(reader.readBits(header.getBitDepth())).intValue();
-                    r[i][j] = palette[k] & 0xff ;
+                    r[i][j] = palette[k] & 0xff;
                     g[i][j] = palette[k + 1] & 0xff;
                     b[i][j] = palette[k + 2] & 0xff;
                 }
@@ -163,6 +164,33 @@ public class PNGConvector extends ImageConvector {
 
     @Override
     public String write(ImageInstance inst) throws IOException, ImageMappingException {
-        throw new ImageMappingException("Not implemented yet", inst.getSourcePath());
+        BufferedImage image = new BufferedImage(inst.getHeader().getWidth(), inst.getHeader().getHeight(),
+                BufferedImage.TYPE_INT_RGB);
+        Graphics graphics = image.getGraphics();
+        int [][] r = inst.getRgb().getR();
+        int [][] g = inst.getRgb().getG();
+        int [][] b = inst.getRgb().getR();
+
+        for (int i = 0; i < r.length; i++) {
+            for (int j = 0; j < r[i].length; j++) {
+              try{
+                  graphics.setColor(new Color(
+                          r[i][j] > 0 ? r[i][j] : 255,
+                          g[i][j] > 0 ? g[i][j] : 255,
+                          b[i][j] > 0 ? b[i][j] : 255));
+              }
+              catch (IllegalArgumentException e){
+                  System.out.println(r[i][j]);
+                  System.out.println(b[i][j]);
+                  System.out.println(g[i][j]);
+              }
+            }
+        }
+        try {
+            ImageIO.write(image, "PNG", new File(inst.getOutputPath()));
+        } catch (IOException error) {
+            error.printStackTrace();
+        }
+        return inst.getOutputPath();
     }
 }

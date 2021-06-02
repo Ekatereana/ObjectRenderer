@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "sceneObjects": [{
+    "transform": {
+      "position": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "material": {
+      "solid": {
+      }
+    },
+    "meshedObject": {
+    }
+  }],
+  "cameras": [{
+    "transform": {
+      "position": {
+        "x": 1.01,
+        "y": 2.76,
+        "z": 3.0
+      }
+    },
+    "perspective": {
+      "fov": 60.0
+    }
+  }]
+}

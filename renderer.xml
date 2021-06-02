@@ -5,7 +5,7 @@
   <jar>C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\target\ImageConvecter-1.0-SNAPSHOT-jar-with-dependencies.jar</jar>
   <outfile>C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\exeStarters\Render.exe</outfile>
   <errTitle></errTitle>
-  <cmdLine>--source =&quot;C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\asserts\cow.obj&quot; --output=&quot;result.ppm&quot;</cmdLine>
+  <cmdLine>--source =&quot;C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\asserts\cow.obj&quot; --output=&quot;result2.ppm&quot;</cmdLine>
   <chdir>.</chdir>
   <priority>normal</priority>
   <downloadUrl>http://java.com/download</downloadUrl>
