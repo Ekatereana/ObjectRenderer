@@ -49,8 +49,8 @@ public class SceneComponent {
 
   public Vector3 getHalfwayVector(Vector3 n, Vector3 lightDir) {
 //    vector(R)*vector(V) = 2(v(N)*v(L)*v(N) - (L))
-    Vector3 nl = n.crossProduct(lightDir);
-    Vector3 reflectRayDir = nl.crossProduct(n).multiply(-2).subtract(lightDir);
+    double nl = n.dotProduct(lightDir);
+    Vector3 reflectRayDir = n.multiply(nl * (-2)).add(lightDir);
     return reflectRayDir;
 
   }

@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c44ebac4-e599-4e36-84c3-e72d99ea0b57" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/big_cow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/one_reflect_object.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/three_objects.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screens/two_reflection.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/object/rendering/object/Disk.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/object/rendering/object/Plane.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/with_color.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/screens/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/source-classes-mapping.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/one_light.png" beforeDir="false" afterPath="$PROJECT_DIR$/one_light.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/rendering/ObjectRenderingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/rendering/ObjectRenderingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/rendering/RenderConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/rendering/RenderConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/rendering/renders/render/material/ColorFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/rendering/renders/render/material/ColorFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/rendering/renders/render/material/MaterialType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/rendering/renders/render/material/MaterialType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/rendering/scene/BasicScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/rendering/scene/BasicScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/rendering/scene/Mesh.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/rendering/scene/Mesh.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/rendering/scene/SceneComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/rendering/scene/SceneComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/object/rendering/scenes/DemoScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/object/rendering/scenes/DemoScene.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ImageConvecter" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="ImageConvecter" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="ppm-controller" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="materials-and-smooth-tracer" />
+                    <option name="lastUsedInstant" value="1622399203" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1621937880" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="command-line-parser" />
+                    <option name="lastUsedInstant" value="1618422112" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="scene-component" />
+                    <option name="lastUsedInstant" value="1618421726" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="ray-tracing" />
+                    <option name="lastUsedInstant" value="1618060249" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
+  <component name="ProjectId" id="1pQOCKvgSYszAz2xBUT6g8AoUhd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/obj/rendering" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
+  </component>
+  <component name="Push.Settings">
+    <option name="SHOW_DETAILS_PANEL" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="obj.rendering" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\src\main\java\obj\rendering" />
+      <recent name="C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\src\main\java\obj" />
+      <recent name="C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\src\main\java" />
+      <recent name="C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\src\main\java\resources" />
+      <recent name="C:\Users\ekate\IdeaProjects\ImageConvecter\test" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\screens" />
+      <recent name="C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\asserts" />
+      <recent name="C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter" />
+      <recent name="C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\src" />
+      <recent name="C:\Users\ekate\Desktop\IdeaProjects\ImageConvecter\exeStarters" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="command.line.parser" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="object.rendering.object" />
+      <recent name="obj.rendering.sceneComponents" />
+      <recent name="obj.rendering.tree" />
+      <recent name="obj.rendering.graphics" />
+      <recent name="obj.rendering" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Gradle.ImageConvecter [runWithJavaExec]">
+    <configuration type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--stacktrace" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runWithJavaExec" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ImageConvecter [runWithJavaExec]" type="GradleRunConfiguration" factoryName="Gradle" nameIsGenerated="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="runWithJavaExec" />
+          </list>
+        </option>
+        <option name="vmOptions" value="" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Gradle.ImageConvecter [runWithJavaExec]" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c44ebac4-e599-4e36-84c3-e72d99ea0b57" name="Default Changelist" comment="" />
+      <created>1615111718858</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1615111718858</updated>
+      <workItem from="1615297472649" duration="2939000" />
+      <workItem from="1615315162776" duration="5000" />
+      <workItem from="1615374493467" duration="3040000" />
+      <workItem from="1615398134040" duration="9992000" />
+      <workItem from="1615455163876" duration="5951000" />
+      <workItem from="1615829851236" duration="8041000" />
+      <workItem from="1615881318383" duration="9000" />
+      <workItem from="1615888481324" duration="10846000" />
+      <workItem from="1615926409418" duration="368000" />
+      <workItem from="1615926818681" duration="1728000" />
+      <workItem from="1615971009120" duration="428000" />
+      <workItem from="1616005243869" duration="21000" />
+      <workItem from="1616098013279" duration="7009000" />
+      <workItem from="1616139601976" duration="310000" />
+      <workItem from="1616175345550" duration="12986000" />
+      <workItem from="1616225805527" duration="21625000" />
+      <workItem from="1616334858882" duration="17762000" />
+      <workItem from="1616354687174" duration="11039000" />
+      <workItem from="1617650593256" duration="534000" />
+      <workItem from="1618060194911" duration="5745000" />
+      <workItem from="1618076229221" duration="2758000" />
+      <workItem from="1618126170627" duration="20093000" />
+      <workItem from="1618412213561" duration="16350000" />
+      <workItem from="1618430616123" duration="4199000" />
+      <workItem from="1618813810851" duration="342000" />
+      <workItem from="1619446846961" duration="1615000" />
+      <workItem from="1621799379944" duration="2326000" />
+      <workItem from="1621928239189" duration="9068000" />
+      <workItem from="1621942581400" duration="7049000" />
+      <workItem from="1621971612977" duration="13000" />
+      <workItem from="1622232388219" duration="653000" />
+      <workItem from="1622285282631" duration="11000" />
+      <workItem from="1622286643551" duration="1923000" />
+      <workItem from="1622370492362" duration="93000" />
+      <workItem from="1622371110487" duration="11701000" />
+      <workItem from="1622399160812" duration="6511000" />
+      <workItem from="1622459919481" duration="4433000" />
+      <workItem from="1622465012720" duration="5883000" />
+      <workItem from="1622491527800" duration="1365000" />
+      <workItem from="1622553805939" duration="4297000" />
+      <workItem from="1622572635461" duration="8233000" />
+      <workItem from="1622617983146" duration="2393000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.obj" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/image/converting/convectors/BMPConvector.java</url>
+          <line>147</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/image/converting/convectors/BMPConvector.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="69" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/image/converting/convectors/BMPConvector.java</url>
+          <line>85</line>
+          <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/image/converting/convectors/PNGConvector.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/obj/rendering/sceneComponents/BasicRaytracingRender.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="84" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/image/converting/convectors/PNGConvector.java</url>
+          <line>171</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.StackOverflowError" package="java.lang" />
+          <option name="timeStamp" value="85" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/object/rendering/ObjectRenderingController.java</url>
+          <line>28</line>
+          <properties class="object.rendering.ObjectRenderingController" method="render">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="content[0]" />
+        <watch expression="palette" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

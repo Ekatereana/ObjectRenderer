@@ -20,7 +20,7 @@ public class Mesh {
 
 
   public Mesh() {
-    this(new Color(255, 255, 255));
+    this(null);
   }
 
   public Color color() {
