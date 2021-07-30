@@ -1,6 +1,6 @@
 package object.rendering.renders;
 
-import com.github.computergraphicscourse.sceneformat.SceneFormat;
+//import com.github.computergraphicscourse.sceneformat.SceneFormat;
 import object.rendering.geometry.Ray;
 import object.rendering.geometry.Vector3;
 import object.rendering.graphics.Raster;

@@ -52,7 +52,7 @@ dependencies {
     implementation 'commons-io:commons-io:2.6'
     implementation 'org.apache.commons:commons-compress:1.10'
     implementation 'org.burningwave:core:8.21.1'
-    implementation 'com.github.computergraphicscourse:sceneformat:0.1.206'
+//    implementation 'com.github.computergraphicscourse:sceneformat:0.1.206'
 }
 
 group = 'org.coputergraphic.simulator'
