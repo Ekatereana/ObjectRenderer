@@ -13,7 +13,7 @@ java {
 
 jar {
     manifest {
-        attributes 'Implementation-Title': 'Image Convecter',
+        attributes 'Implementation-Title': 'Object Render Simulator',
                 'Main-Class': 'main.java.Main'
     }
 }
@@ -57,17 +57,10 @@ dependencies {
 
 group = 'org.coputergraphic.simulator'
 version = '1.0-SNAPSHOT'
-description = 'ImageConvecter'
+description = 'ObjectRender'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
 
-//publishing {
-//    publications {
-//        maven(MavenPublication) {
-//            from(components.java)
-//        }
-//    }
-//}
 
 ext {
     javaMainClass = "Main"
