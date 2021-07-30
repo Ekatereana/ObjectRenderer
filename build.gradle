@@ -17,29 +17,42 @@ jar {
                 'Main-Class': 'main.java.Main'
     }
 }
+
 repositories {
     mavenLocal()
     mavenCentral()
-    maven {
-        url "https://maven.pkg.github.com/computer-graphics-course/scene-format"
-        credentials {
-            username "$gprComputerGraphicsUser"
-            password "$gprComputerGraphicsPassword"
+}
+
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/computer-graphics-course/scene-format")
+            credentials {
+                username = "$gprComputerGraphicsUser"
+                password = "$gprComputerGraphicsPassword"
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
+
 
 dependencies {
     implementation 'commons-cli:commons-cli:1.4'
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
-
     testCompileOnly 'org.projectlombok:lombok:1.18.20'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
     implementation 'commons-io:commons-io:2.6'
     implementation 'org.apache.commons:commons-compress:1.10'
     implementation 'org.burningwave:core:8.21.1'
-    implementation 'com.github.computergraphicscourse:sceneformat:0.1.93'
+    implementation 'com.github.computergraphicscourse:sceneformat:0.1.206'
 }
 
 group = 'org.coputergraphic.simulator'
@@ -47,13 +60,14 @@ version = '1.0-SNAPSHOT'
 description = 'ImageConvecter'
 java.sourceCompatibility = JavaVersion.VERSION_1_8
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            from(components.java)
-        }
-    }
-}
+
+//publishing {
+//    publications {
+//        maven(MavenPublication) {
+//            from(components.java)
+//        }
+//    }
+//}
 
 ext {
     javaMainClass = "Main"
@@ -65,3 +79,14 @@ task runWithJavaExec(type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = javaMainClass
 }
+
+//jar {
+//    manifest {
+//        attributes(
+//                'Main-Class': 'Main'
+//        )
+//    }
+//    from {
+//        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+//    }
+//}

@@ -19,8 +19,6 @@ import java.util.stream.Collectors;
 import static java.util.Arrays.asList;
 
 public class DemoScene extends BasicScene implements RenderConfig {
-    private static final String path = "C:\\Users\\ekate\\Desktop\\IdeaProjects\\ImageConvecter\\cow.obj";
-
     @SneakyThrows
     public DemoScene() {
         super();

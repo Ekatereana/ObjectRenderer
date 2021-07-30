@@ -72,7 +72,7 @@ public abstract class ColorFetcher {
             Scene scene,
             int depth
     ) {
-        if (depth > 3) return Color.WHITE;
+        if (depth > scene.getSceneObjects().size()) return Color.WHITE;
         SceneComponent obj = InteractionService.findInteraction(ray, scene);
         Color resultColor = performGeneralChecks(obj);
         if (resultColor == null) {

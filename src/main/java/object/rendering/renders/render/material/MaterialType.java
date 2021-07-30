@@ -1,5 +1,6 @@
 package object.rendering.renders.render.material;
 
+import lombok.Data;
 import lombok.Getter;
 import object.rendering.geometry.Ray;
 import object.rendering.renders.InteractionService;
